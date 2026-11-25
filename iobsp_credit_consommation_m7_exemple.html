@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exemple commenté — module 7</title><style>
+:root{--prune:#8C1E70;--prune-fonce:#5E1349;--prune-clair:#F4E6EE;--accent:#C77BAA;
+ --vert:#283C28;--gris:#3C3C3C;--gris-moyen:#8A7A85;--filet:#E8DCE5;--creme:#FAF6F8;
+ --ok:#2F7A4F;--ko:#B23B3B;--amb:#B5852A;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--gris);
+ font-family:"Nunito","Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px 60px}
+header.bandeau{background:var(--prune-fonce);color:#fff;padding:18px 0;border-bottom:4px solid var(--accent)}
+header.bandeau .wrap{padding-bottom:0}
+.chapitre{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#EAD3E3}
+.chapitre span{color:var(--accent);margin:0 6px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.25;margin:8px 0 4px;color:#fff}
+.sous{color:#EAD3E3;font-size:14.5px;margin:0}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:var(--prune-fonce);
+ margin:34px 0 0;padding-bottom:8px;border-bottom:2px solid var(--filet)}
+h2 .num{color:var(--accent);margin-right:8px}
+h3{font-size:15px;color:var(--vert);margin:20px 0 8px;letter-spacing:.02em}
+.carte{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:20px 22px;margin:18px 0;
+ box-shadow:0 1px 2px rgba(94,19,73,.05)}
+.enc{background:var(--prune-clair);border-left:5px solid var(--prune);padding:14px 18px;
+ border-radius:0 8px 8px 0;margin:18px 0;font-size:15.2px}
+.enc .t{display:block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+ font-weight:800;color:var(--prune-fonce);margin-bottom:6px}
+.enc.al{background:#FBF4F4;border-left-color:var(--ko)}.enc.al .t{color:var(--ko)}
+.enc.ci{background:#FCF8F0;border-left-color:var(--amb)}.enc.ci .t{color:#8A6418}
+.situ{background:#FCF9FB;border:1px dashed var(--filet);border-radius:8px;padding:16px 18px;margin:16px 0;font-size:15.2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}
+.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:7px;font-size:14.5px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.quad>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:12px 13px;font-size:13.6px}
+.quad .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13px;
+ text-transform:uppercase;letter-spacing:.04em}
+.tri .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;
+ text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.8px;background:#fff}
+th,td{border:1px solid var(--filet);padding:9px 12px;text-align:left}
+thead th{background:var(--prune-clair);color:var(--prune-fonce);font-size:13.5px}
+tbody th{font-weight:600;color:var(--gris)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td,tr.tot th{background:#FBF3F8;font-weight:800;color:var(--prune-fonce)}
+.dl{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;text-decoration:none;
+ padding:11px 20px;border-radius:8px;font-weight:700;font-size:15px;margin:20px 0 4px}
+.dl:hover{background:var(--prune-fonce)}
+ol.q{padding-left:0;list-style:none;counter-reset:q}
+ol.q>li{margin:16px 0;padding-left:38px;position:relative}
+ol.q>li::before{counter-increment:q;content:counter(q);position:absolute;left:0;top:1px;
+ width:26px;height:26px;border-radius:50%;background:var(--prune-clair);color:var(--prune-fonce);
+ font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+b,strong{color:var(--vert)}
+footer{text-align:center;font-size:12.5px;color:var(--gris-moyen);padding:26px 18px 12px;
+ border-top:1px solid var(--filet);margin-top:44px}
+@media(max-width:860px){.quad{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.duo,.tri,.quad{grid-template-columns:1fr}h1{font-size:22px}}
+@media print{body{background:#fff}.dl{display:none}header.bandeau{background:#5E1349 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+td{vertical-align:top}td:first-child{white-space:nowrap}.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}.tri .h,.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;text-transform:uppercase;letter-spacing:.05em}.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}@media(max-width:640px){.tri,.duo{grid-template-columns:1fr}}.enc,tr,.tri,.duo{break-inside:avoid}
+.enc p,.cols p{margin:6px 0}.enc.ok{background:#F1F7F3;border-left-color:var(--ok)}.enc.ok .t{color:var(--ok)}
+.cols{display:grid;gap:14px;margin:16px 0}.cols.c2{grid-template-columns:1fr 1fr}.cols.c3{grid-template-columns:repeat(3,1fr)}.cols.c4{grid-template-columns:repeat(4,1fr)}.cols.c5,.cols.c6{grid-template-columns:repeat(3,1fr)}
+.cols>div>.enc{margin:0;height:100%}.cols table{margin:0}
+p.src{font-size:12.5px;color:var(--gris-moyen);line-height:1.5}
+td,th{vertical-align:top}
+@media(max-width:760px){.cols.c2,.cols.c3,.cols.c4,.cols.c5,.cols.c6{grid-template-columns:1fr}}
+table.frise{table-layout:fixed;font-size:13px}.enc h3{margin:2px 0 8px;font-family:Georgia,serif;color:var(--prune-fonce);font-size:16px}
+.cols>div>.enc{margin:0}
+</style></head><body>
+<header class="bandeau"><div class="wrap"><div class="chapitre">IOBSP NIVEAU 2 · BLOC 2 · JOURNÉE 3 — MODULE 7</div><h1>Exemple commenté — un dossier de bout en bout</h1><p class="sous">Sept étapes, sept modules: la journée 3 appliquée à un seul cas</p></div></header>
+<main class="wrap">
+<p>Ce dernier exemple ne traite pas une notion: il déroule un <b>dossier complet</b>, et nomme à chaque étape le module d&#x27;où vient la règle appliquée. C&#x27;est l&#x27;exercice que l&#x27;épreuve vous demandera.</p>
+<div class="enc"><p><b>LE DOSSIER TEL QU&#x27;IL SE PRÉSENTE</b></p><p><b>M me Ollivier</b>, 38 ans, salariée, mariée sous le <b>régime légal</b>. Elle se présente <b>en magasin</b> pour financer une cuisine équipée commandée le jour même chez le vendeur, pour <b>9 400 €</b>. Elle souhaite une mensualité « autour de 200 €».</p><p>Éléments recueillis: revenus nets 2 150 € · loyer 720 € · un crédit auto en cours, 210 € par mois pendant encore 26 mois · <b>un incident de</b> <b>remboursement non régularisé</b> apparaît lors de la consultation du fichier. Son époux n&#x27;est pas coemprunteur. Le vendeur propose un <b>crédit renouvelable</b> adossé à la carte du magasin, assorti d&#x27;une assurance « facultative» de 9 € par mois — dont il précise oralement qu&#x27;elle « conditionne l&#x27;accord».</p></div>
+<table><tbody><tr><td></td><td><b>Étape 1 · Qualifier l&#x27;opération</b></td></tr></tbody></table>
+<div class="enc"><div class="enc"><p><b>MODULE 1 — CHAMP D&#x27;APPLICATION</b></p></div><p><b>L&#x27;OPÉRATION RELÈVE-T-ELLE DU CRÉDIT À LA CONSOMMATION ?</b></p><p><b>Oui.</b> Emprunteuse personne physique agissant hors activité professionnelle · montant de 9 400 €, dans les bornes · aucune exclusion applicable. Le régime protecteur s&#x27;applique intégralement.</p><div class="enc ci"><span class="t">LE RÉFLEXE DE DATATION</span><p>Si le dossier est conclu <b>à compter du 20 novembre 2026</b>, le périmètre est celui de la réforme: du premier euro à 100 000 €. Conclu <b>avant</b>, il reste soumis au droit antérieur <b>jusqu&#x27;à son terme</b>. Un énoncé daté n&#x27;est jamais daté par hasard.</p></div></div>
+<table><tbody><tr><td></td><td><b>Étape 2 · Choisir la forme</b></td></tr></tbody></table>
+<div class="enc"><div class="enc"><span class="t">MODULE 2 — LES FORMES DE CRÉDIT</span></div><span class="t">PREMIÈRE QUESTION: LE CRÉDIT FINANCE-T-IL UN ACHAT DÉTERMINÉ ?</span><p><b>Oui</b> — une cuisine commandée chez un vendeur identifié. Le <b>crédit affecté</b> s&#x27;impose: il est la seule forme qui lie le sort du crédit à celui de la vente. Ses obligations ne commenceront qu&#x27;à la <b>livraison</b>; si le cuisiniste défaille, elle pourra demander la suspension puis la résolution.</p><span class="t">LE CRÉDIT RENOUVELABLE PROPOSÉ EST-IL ACCEPTABLE ?</span><p>Il est <b>inadapté</b> au besoin. Et l&#x27;achat dépassant <b>1 000 €</b> sur le lieu de vente, le vendeur <b>doit</b> accompagner son offre d&#x27;une <b>proposition de</b> <b>crédit amortissable</b>, comparable sur au moins deux hypothèses de délai. Si M me Ollivier opte pour l&#x27;amortissable, l&#x27;offre correspondante doit lui être fournie.</p><div class="enc al"><span class="t">CE QUI SERAIT REPROCHÉ</span><p>Proposer un renouvelable pour financer un achat déterminé prive la cliente de l&#x27; <b>interdépendance</b> sans qu&#x27;elle le sache. Ce n&#x27;est pas une erreur de forme: c&#x27;est un manquement aux <b>explications adéquates</b>, et cela part du produit au lieu de partir du besoin.</p></div></div>
+<table><tbody><tr><td></td><td><b>Étape 3 · Informer</b></td></tr></tbody></table>
+<div class="enc"><h2>MODULE 1 — INFORMATION PRÉCONTRACTUELLE · MODULE 3 — ORIGINE DES RÈGLES</h2><span class="t">QUE DEVEZ-VOUS REMETTRE, ET QUAND ?</span><p>La <b>FIPEN</b>, en temps utile avant qu&#x27;elle ne soit liée, sur un <b>support durable qu&#x27;elle choisit</b>. Puis les <b>explications adéquates</b>:<br>caractéristiques essentielles, conséquences financières y compris en cas de défaut, modalités de résiliation des services accessoires.</p><span class="t">UNE OPÉRATION CONCLUE EN MAGASIN APPELLE-T-ELLE UNE PRÉCAUTION PARTICULIÈRE ?</span><p>Oui. Si l&#x27;information est fournie <b>moins d&#x27;un jour</b> avant l&#x27;engagement — ce qui est la situation typique d&#x27;une vente en magasin —, un <b>rappel du droit de rétractation</b> doit lui être adressé <b>entre un et sept jours après la conclusion</b>, sur papier ou support durable de son choix.</p></div>
+<table><tbody><tr><td></td><td><b>Étape 4 · Analyser la solvabilité</b></td></tr></tbody></table>
+<div class="enc"><div class="enc"><span class="t">MODULE 4 — LES FICHIERS · MODULE 7 — LA CONSTITUTION DU DOSSIER</span></div><span class="t">QUE RECUEILLEZ-VOUS ?</span><p>Identité et domicile · justificatifs de revenus · relevé de compte · état des crédits en cours · <b>fiche d&#x27;informations relative à la solvabilité</b>, distincte de la FIPEN, signée par la cliente avec déclaration sur l&#x27;honneur d&#x27;exactitude. Le montant dépassant <b>3 000 €</b>, les déclarations doivent être <b>corroborées par des pièces justificatives</b>.</p><p><b>LE FICHIER RÉVÈLE UN INCIDENT NON RÉGULARISÉ. QU&#x27;EN FAITES-VOUS ?</b></p><p>Il pèse dans l&#x27;analyse — mais il <b>n&#x27;interdit rien légalement</b>. Vous ne dites pas à la cliente qu&#x27;elle est « interdite de crédit»: c&#x27;est faux et c&#x27;est une faute de conseil. Vous lui indiquez que la <b>régularisation entraîne la radiation anticipée</b> et permettrait de réexaminer sa demande.</p><p><b>ET SI ELLE ÉTAIT DIRIGEANTE D&#x27;ENTREPRISE ?</b></p><p>Sans effet ici: le crédit finance un besoin <b>non professionnel</b>, la consultation de <b>FIBEN est prohibée</b>, même si votre établissement y a accès.</p><div class="enc ok"><span class="t">LE CALCUL DE CHARGE</span><p>Revenus 2 150 € · charges actuelles 930 € (loyer 720 + crédit auto 210). Une mensualité de 200 € porterait les charges à 1 130 €, soit <b>plus de la moitié des revenus</b>. C&#x27;est le signal du <b>devoir de mise en garde</b> — et la trace de cette alerte doit être conservée.</p></div></div>
+<table><tbody><tr><td></td><td><b>Étape 5 · Poser les chiffres</b></td></tr></tbody></table>
+<div class="enc"><div class="enc"><span class="t">MODULE 5 — LES CARACTÉRISTIQUES FINANCIÈRES</span></div><span class="t">QUE DEVEZ-VOUS ANNONCER ?</span><p>Quatre chiffres: l&#x27; <b>échéance</b> et sa périodicité · le <b>TAEG</b> · le <b>coût total</b> · le <b>montant total dû</b>. Les deux premiers servent à décider et comparer, les deux derniers à ne pas être surprise.</p><p><b>L&#x27;ASSURANCE « FACULTATIVE» À 9 € PAR MOIS</b></p><p>Le vendeur indique qu&#x27;elle <b>conditionne l&#x27;accord</b>: elle est donc <b>obligatoire en fait</b>. Son coût — <b>9 € × durée</b> — doit <b>entrer dans le TAEG</b>. Un TAEG calculé sans elle serait <b>erroné</b>. Le qualificatif employé dans l&#x27;offre ne fait pas la règle.</p><p><b>SI LA CLIENTE DEMANDE À ALLONGER POUR ALLÉGER L&#x27;ÉCHÉANCE</b></p><p>Lui donner les <b>deux coûts totaux</b> côte à côte, jamais les deux TAEG: allonger fait <b>baisser le TAEG</b> tout en <b>augmentant le coût</b>. Comparer sur le taux la conduirait au choix le plus cher.</p><span class="t">DERNIER CONTRÔLE</span><p>Le montant étant supérieur à 6 000 €, relever le <b>seuil de l&#x27;usure</b> de cette tranche pour le trimestre en cours et vérifier que le <b>TAEG</b> — assurance comprise — lui est inférieur.</p></div>
+<table><tbody><tr><td></td><td><b>Étape 6 · Examiner les tiers</b></td></tr></tbody></table>
+<div class="enc"><div class="enc"><span class="t">MODULE 6 — GARANTIES ET TIERS AU CONTRAT</span></div><p><b>L&#x27;ÉPOUX EST-IL ENGAGÉ ?</b></p><p>S&#x27;agissant d&#x27;un <b>emprunt</b>, l&#x27;article 220 l&#x27;exclut de la solidarité ménagère, et l&#x27;exception ne joue pas: 9 400 € n&#x27;est pas une « somme modeste nécessaire aux besoins de la vie courante». On applique donc l&#x27; <b>article 1415</b>: sans consentement exprès, M me Ollivier n&#x27;engage que ses <b>biens propres et ses revenus</b>. Les biens communs sont hors d&#x27;atteinte.</p><p><b>SI LE PRÊTEUR DEMANDE L&#x27;ACCORD DE L&#x27;ÉPOUX</b></p><p>Son <b>consentement exprès</b> rendrait les <b>biens communs</b> saisissables — mais il <b>n&#x27;engagerait pas ses biens propres</b> et ne deviendrait pas codébiteur. Le consentement doit être exprès et viser cet engagement: une présence à la signature ne suffit pas.</p><span class="t">SI UNE CAUTION ÉTAIT DEMANDÉE</span><p>Mention <b>apposée par la caution elle-même</b>, à peine de nullité, montant en toutes lettres et en chiffres · <b>mise en garde</b> si l&#x27;engagement de la débitrice est inadapté à ses capacités · engagement <b>réduit</b> s&#x27;il est manifestement disproportionné au patrimoine de la caution.</p></div>
+<table><tbody><tr><td></td><td><b>Étape 7 · Décider et tracer</b></td></tr></tbody></table>
+<div class="enc"><div class="enc"><span class="t">MODULE 7 — LA CONSTITUTION DU DOSSIER</span></div><span class="t">QUE CONSERVEZ-VOUS ?</span><p>La <b>date de consultation</b> du fichier · la <b>remise de la FIPEN</b>, avec date et support · les <b>explications adéquates</b> fournies · la <b>mise en garde</b>, ici clairement due · la fiche de solvabilité signée et les pièces justificatives, <b>pendant la durée du contrat</b>.</p><p><b>COMMENT SE MOTIVE UN REFUS, S&#x27;IL INTERVIENT ?</b></p><p>Par les <b>éléments du dossier</b>: incident non régularisé, charge de remboursement portant les charges au-delà de la moitié des revenus. <b>Jamais</b> par une « interdiction de crédit» qui n&#x27;existe pas, jamais par une information tirée de FIBEN.</p><div class="enc al"><span class="t">CE QUE RISQUE LE PRÊTEUR QUI NE PEUT PAS PROUVER</span><p>La <b>déchéance du droit aux intérêts</b>, en totalité ou dans la proportion fixée par le juge: l&#x27;emprunteur ne rembourse alors que le capital. Les décisions ne reprochent pas de n&#x27;avoir rien fait — elles constatent que l&#x27;établissement <b>« ne justifie pas»</b> l&#x27;avoir fait. <b>Ce</b> <b>qui n&#x27;est pas tracé n&#x27;a pas eu lieu.</b></p></div></div>
+<table><tbody><tr><td></td><td><b>La séquence en un tableau</b></td></tr></tbody></table>
+<table><thead><tr><th><b>N°</b></th><th><b>Étape</b></th><th><b>Module</b></th><th><b>La question à se poser</b></th></tr></thead><tbody><tr><td><b>1</b></td><td>Qualifier</td><td>Module 1</td><td>L&#x27;opération relève-t-elle du crédit à la consommation ? Et à quelle date est-elle conclue ?</td></tr><tr><td><b>2</b></td><td>Choisir la forme</td><td>Module 2</td><td>Achat déterminé ? Besoin ponctuel ou récurrent ? Propriété ou usage ? Décalage ou financement ?</td></tr><tr><td><b>3</b></td><td>Informer</td><td>Modules 1 et 3</td><td>FIPEN en temps utile, support durable choisi, explications adéquates, rappel de rétractation le cas échéant</td></tr><tr><td><b>4</b></td><td>Analyser</td><td>Modules 4 et 7</td><td>Pièces recueillies, fiche de solvabilité signée, fichier consulté — et FIBEN écarté si besoin non professionnel</td></tr><tr><td><b>5</b></td><td>Chiffrer</td><td>Module 5</td><td>Échéance, TAEG assurance comprise si exigée, coût total, montant total dû, contrôle de l&#x27;usure</td></tr><tr><td><b>6</b></td><td>Examiner les tiers</td><td>Module 6</td><td>Caution, assurance, conjoint — engagé sur quel patrimoine ?</td></tr><tr><td><b>7</b></td><td>Décider et tracer</td><td>Module 7</td><td>Mise en garde si risque, motivation par les éléments du dossier, conservation des pièces</td></tr></tbody></table>
+<div class="enc"><span class="t">LES QUATRE MANQUEMENTS QUE CE DOSSIER RÉVÉLAIT</span><p>• Un <b>crédit renouvelable</b> proposé pour financer un achat déterminé, sans la <b>proposition d&#x27;amortissable</b> pourtant obligatoire au-delà de 1 000 € sur le lieu de vente.<br>• Une assurance dite <b>facultative</b> mais conditionnant l&#x27;accord: elle est obligatoire, et son coût doit entrer dans le <b>TAEG</b>.<br>• Une <b>mise en garde</b> due, au vu de la charge de remboursement, et qui doit être tracée.<br>• Le risque d&#x27;annoncer à la cliente une <b>interdiction de crédit</b> qui n&#x27;existe pas.<br>Aucun de ces quatre points n&#x27;est une subtilité: ce sont les quatre reproches les plus courants en contentieux.</p></div>
+<p><i>Document fictif à usage pédagogique. La cliente et le dossier sont imaginaires; les règles citées ne le sont pas. Sources: code de la consommation, art. L. 312-1 et s., L. 312-12</i> <i>et s., L. 312-14, L. 312-16 et L. 312-17, L. 312-44 et s., L. 312-62, L. 314-1 et s., L. 314-6, L. 341-1 et s. · code civil, art. 220, 1415, 2297, 2299 et 2300 · loi n° 2010-737 du 1 er</i> <i>juillet 2010 · ordonnance n° 2025-880 du 3 septembre 2025 · arrêté du 18 juillet 2022, annexe A, point B.1.</i></p>
+</main>
+<footer>TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer>
+</body></html>
